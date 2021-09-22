@@ -1,3 +1,5 @@
+
+import Navigation from "views/navigation";
 import Login from "views/login";
 
 interface LoginPageProps {
@@ -7,6 +9,7 @@ interface LoginPageProps {
 export default function LoginPage({ register }: LoginPageProps) {
     return (
         <div>
+            <Navigation/>
             <h1>Login</h1>
             { register ? 'register' : 'login' }
             <Login/>
