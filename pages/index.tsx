@@ -9,10 +9,13 @@ export default function HomePage() {
     return (
         <div>
             <Navigation/>
-            <Landing/>
-            <About/>
-            <Sponsors/>
-            <FrequentlyAskedQuestions/>
+            <div style={{ height: '200vh', marginTop: 74 }}>
+                <Landing/>
+                <About/>
+                <Sponsors/>
+                <FrequentlyAskedQuestions/>
+            </div>
+            <div>[ FOOTER ]</div>
         </div>
     )
 }
