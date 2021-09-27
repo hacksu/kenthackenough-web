@@ -3,7 +3,7 @@ import Navigation from "views/navigation";
 import Landing from "views/landing";
 import About from "views/about";
 import Sponsors from "views/sponsors";
-import FrequentlyAskedQuestions from "views/faq";
+import FrequentlyAskedQuestionsView from "views/faq";
 
 export default function HomePage() {
     return (
@@ -13,7 +13,7 @@ export default function HomePage() {
                 <Landing/>
                 <About/>
                 <Sponsors/>
-                <FrequentlyAskedQuestions/>
+                <FrequentlyAskedQuestionsView/>
             </div>
             <div>[ FOOTER ]</div>
         </div>
