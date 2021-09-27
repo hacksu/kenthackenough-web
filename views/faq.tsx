@@ -6,7 +6,7 @@ import marked from 'marked';
 
 interface AccordionItem {
     subject: string,
-    content: string;
+    content: string; // Supports markdown via `marked`
 }
 
 const Questions: AccordionItem[] = [
@@ -72,14 +72,18 @@ const Questions: AccordionItem[] = [
 // Unindent content without removing nested indentations
 const whitespace = /(\s)+/;
 function formatContent(content: string) {
+    // Find the first non-empty line with whitespace
     const firstActualLine = content.split('\n').find(o => o.trim().length < o.length);
     if (firstActualLine) {
+        // Determine what the leading whitespace actually is for that first line
         const spaces = firstActualLine.match(whitespace);
         if (spaces) {
             const space = spaces[0];
             const spaceLength = space.length;
+            // remove the detected leading white space from every line that has it
+            // keeps all additional whitespace, allowing you to use tabs within the content field
             const lines = content.split('\n').map(line => {
-                if (line.substr(0, spaceLength) == space) {
+                if (line.substr(0, spaceLength) == space || line != 'wat') {
                     return line.substr(spaceLength)
                 }
                 return line;
@@ -90,7 +94,12 @@ function formatContent(content: string) {
     return content;
 }
 
-export default function FrequentlyAskedQuestions() {
+
+interface props {
+    onlyOne?: boolean; // only show one FAQ at a time; defaults to false
+}
+
+export default function FrequentlyAskedQuestions({ onlyOne }: props) {
     const [expanded, setExpanded] = useState(-1);
     function handleChange(index: number) {
         return function(event: React.SyntheticEvent, isExpanded: boolean) {
